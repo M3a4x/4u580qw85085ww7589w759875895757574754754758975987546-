@@ -26,7 +26,7 @@ client.on('ready', () => {
   console.log(`Servers : [ " ${client.guilds.size} " ]`);
   console.log(`Users : [ " ${client.users.size} " ]`);
   console.log(`Channels : [ " ${client.channels.size} " ]`);
-  console.log('By : '+`${client.users.get("290908670529896448").username}`)
+  console.log('client.users.get('....').user.username`)
    client.user.setActivity("You | .help",{type: 'WATCHING'})
    client.user.setStatus("dnd")
 });
@@ -110,8 +110,8 @@ client.on('message', message => {
         if (message.content.toLowerCase() === prefix + "inv") {
             if(!message.channel.guild) return;
         let embed = new Discord.RichEmbed()
-        .setTitle(`:small_orange_diamond: Click Here To Invite Magic. `)
-        .setURL(`https://discord.gg/2aCpZhH`)
+        .setTitle(`:small_orange_diamond: Click Here To Invite Planet. `)
+        .setURL(`https://discordapp.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=8`)
      message.channel.sendEmbed(embed);
        }
    });
@@ -163,7 +163,7 @@ message.channel.send({embed:embed}).then(message => message.delete(5000));
      const embed = new Discord.RichEmbed()
          .setColor('#36393e')
          .setTitle('Click To Join Support Server')
-         .setURL('https://discord.gg/2aCpZhH')
+         .setURL('https://discord.gg/PYqcDqd')
          .setDescription(`
          \`\`\`Main Commands  :\`\`\`         
          
@@ -833,6 +833,43 @@ client.on('message',function(message) {
    } 
 });
 
+client.on('message', message => {
+
+if (message.author.bot) return;
+  if (message.content.split(" ")[0].toLowerCase() === prefix + "mc") {
+                        if(!message.channel.guild) return;
+
+if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('You Need MANAGE_MESSAGES Permission').then(message => message.delete(5000))
+           message.channel.overwritePermissions(message.guild.id, {
+         SEND_MESSAGES: false
+
+           }).then(() => {
+ const e = new Discord.RichEmbed()
+               .setAuthor('Channel Disabled By : '+message.author.username)
+                .setColor('#36393e')
+               
+               message.channel.send(e)
+               });
+             }
+if (message.content.split(" ")[0].toLowerCase() === prefix + "umc") {
+    if(!message.channel.guild) return;
+
+if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('You Need MANAGE_MESSAGES Permission').then(message => message.delete(5000))
+           message.channel.overwritePermissions(message.guild.id, {
+         SEND_MESSAGES: true
+
+           }).then(() => {
+               const e = new Discord.RichEmbed()
+               .setAuthor('Channel Enabled By : '+message.author.username)
+                        .setColor('#36393e')
+               
+               message.channel.send(e)
+           });
+             }
+
+
+
+});
 
 
 client.on('message', message => {
