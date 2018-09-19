@@ -833,43 +833,6 @@ client.on('message',function(message) {
    } 
 });
 
-client.on('message', message => {
-
-if (message.author.bot) return;
-  if (message.content.split(" ")[0].toLowerCase() === prefix + "mc") {
-                        if(!message.channel.guild) return;
-
-if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('You Need MANAGE_MESSAGES Permission').then(message => message.delete(5000))
-           message.channel.overwritePermissions(message.guild.id, {
-         SEND_MESSAGES: false
-
-           }).then(() => {
- const e = new Discord.RichEmbed()
-               .setAuthor('Channel Disabled By : '+message.author.username)
-                .setColor('#36393e')
-               
-               message.channel.send(e)
-               });
-             }
-if (message.content.split(" ")[0].toLowerCase() === prefix + "umc") {
-    if(!message.channel.guild) return;
-
-if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('You Need MANAGE_MESSAGES Permission').then(message => message.delete(5000))
-           message.channel.overwritePermissions(message.guild.id, {
-         SEND_MESSAGES: true
-
-           }).then(() => {
-               const e = new Discord.RichEmbed()
-               .setAuthor('Channel Enabled By : '+message.author.username)
-                        .setColor('#36393e')
-               
-               message.channel.send(e)
-           });
-             }
-
-
-
-});
 
 
 client.on('message', message => {
